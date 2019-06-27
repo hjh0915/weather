@@ -9,7 +9,6 @@ import java.util.*;
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
 
-
 public class App {
     private static ProvDao provDao = new PlainProvDao();
     private static CityDao cityDao = new PlainCityDao();
