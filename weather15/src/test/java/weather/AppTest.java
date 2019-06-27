@@ -3,12 +3,15 @@
  */
 package weather;
 
+import java.util.List;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
+
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
+import com.jxgm.service.*;
 
-import java.util.List;
 
 public class AppTest {
     @Test public void testFindAll() {
@@ -18,6 +21,25 @@ public class AppTest {
             List<Province> p = provDao.findAll();
             assertEquals(p.size(), 34);
             
+        } catch(Exception e) {
+		}
+    }
+
+    @Test public void testAll() {
+        IProvinceService pservice = new ProvinceService();
+
+         try {
+            List<Province> provinces = pservice.findAll();
+            
+            Province x = null;
+            for (Province p: provinces) {
+                if (p.getId().equals("16")) {
+                    x = p;
+                    break;
+                }
+            }
+            assertEquals(x.getCities().size(), 11);
+
         } catch(Exception e) {
 		}
     }

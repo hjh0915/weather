@@ -38,7 +38,6 @@ public class PlainProvDao implements ProvDao {
 
     public List<Province> findAll() {
         List<Province> provinces = new ArrayList<>();
-        Province prov = new Province();
         Connection connection = null;
         try {
             connection = DB.getCon();
@@ -47,6 +46,7 @@ public class PlainProvDao implements ProvDao {
             ResultSet result = pstmt.executeQuery();
 
             while (result.next()) {
+                Province prov = new Province();
                 String id = result.getString("id");
                 String name = result.getString("name");
 

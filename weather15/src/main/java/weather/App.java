@@ -8,6 +8,7 @@ import java.util.*;
 
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
+import com.jxgm.service.*;
 
 public class App {
     private static ProvDao provDao = new PlainProvDao();
@@ -15,17 +16,22 @@ public class App {
 
     public static void main(String[] args) throws IOException {
 
-        try {
-            Province p = provDao.findById("16");
-            System.out.println(p);
-            
-            List<City> cities = cityDao.findByPid("16");
-            // cities.forEach((City c) -> {
-            //     System.out.println(c);
-            // });
+        IProvinceService pservice = new ProvinceService();
 
-            p.setCities(cities);
-            System.out.println(p.getCities());
+         try {
+            List<Province> provinces = pservice.findAll();
+            
+            // Province x = null;
+            for (Province p: provinces) {
+
+                System.out.println(p);
+                System.out.println(p.getCities());
+                // if (p.getId().equals("16")) {
+                //     x = p;
+                //     break;
+                // }
+            }
+            
 
         } catch(Exception e) {
 		}
