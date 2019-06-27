@@ -109,8 +109,8 @@ public class App {
 
         try {
             Class.forName("org.postgresql.Driver");
-            String url="jdbc:postgresql://localhost:5432/test";
-            String user = "jxyz";
+            String url="jdbc:postgresql://localhost:5432/shop";
+            String user = "hjh";
             String pwd = "1234";
             Connection con = DriverManager.getConnection(url, user, pwd);
             // con.setAutoCommit(false);
