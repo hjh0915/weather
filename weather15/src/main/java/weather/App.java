@@ -19,19 +19,31 @@ public class App {
         IProvinceService pservice = new ProvinceService();
 
          try {
+            long startTime = System.currentTimeMillis();
+
             List<Province> provinces = pservice.findAll();
-            
-            // Province x = null;
+
             for (Province p: provinces) {
 
                 System.out.println(p);
                 System.out.println(p.getCities());
-                // if (p.getId().equals("16")) {
-                //     x = p;
-                //     break;
-                // }
             }
+
+            long endTime = System.currentTimeMillis();
+            System.out.println("程序运行时间：" + (endTime - startTime)/1000 + "s");
             
+
+            long startTime1 = System.currentTimeMillis();
+            List<Province> provinces2 = pservice.findAllWithCities();
+            
+            for (Province p: provinces2) {
+
+                System.out.println(p);
+                System.out.println(p.getCities());
+            }
+
+            long endTime1 = System.currentTimeMillis();
+            System.out.println("程序运行时间：" + (endTime1 - startTime1)/1000 + "s");
 
         } catch(Exception e) {
 		}

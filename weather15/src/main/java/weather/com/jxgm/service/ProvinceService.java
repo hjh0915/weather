@@ -17,9 +17,18 @@ public class ProvinceService implements IProvinceService {
 
             List<City> cities = cityDao.findByPid(id);
 
-            p.setCities(cities);
+            p.setCities(cities); 
         }  
 
         return provinces;
     }
+
+    public List<Province> findAllWithCities() {
+
+        ProvDao provDao = new PlainProvDao();
+
+        List<Province> prov = provDao.findAllWithCities();
+
+        return prov;
+    }    
 }

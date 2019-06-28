@@ -22,7 +22,7 @@ weather09, weather11, weather14 子项目中各包含 build.gradle 文件
 
 新建gradle子项目
 ==============
-将其中的build文件夹删除
+将其中的build文件夹删除 
 
 执行gradle子项目
 ==============
