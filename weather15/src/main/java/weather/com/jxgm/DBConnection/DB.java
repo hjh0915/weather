@@ -40,10 +40,4 @@ public class DB {
 		Connection con = DriverManager.getConnection(url, user, passwd);
 		return con;
 	}
-
-	public void closeCon(Connection con) throws SQLException{
-		if (con != null) {
-			con.close();
-		}
-	}
 }

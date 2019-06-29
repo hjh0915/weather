@@ -15,12 +15,13 @@ public class PlainProvDao implements ProvDao {
     public Province findById(String id) {
         Province p = new Province();
         Connection connection = null;
+        PreparedStatement stmt = null;
         try {
             connection = DB.getCon();
-            PreparedStatement pstmt = connection.prepareStatement("select name from province where id = ?");
-            pstmt.setString(1, id);
+            stmt = connection.prepareStatement("select name from province where id = ?");
+            stmt.setString(1, id);
 
-            ResultSet result = pstmt.executeQuery();
+            ResultSet result = stmt.executeQuery();
 
             if (result.next()) {
                 String name = result.getString("name");
@@ -29,10 +30,20 @@ public class PlainProvDao implements ProvDao {
                 p.setName(name);
 
             }
-            pstmt.close();
+            
         } catch (SQLException ex) {
             System.out.println("database conn error");
         } finally{
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //
+            }
         }
         return p;
     }
@@ -40,11 +51,12 @@ public class PlainProvDao implements ProvDao {
     public List<Province> findAll() {
         List<Province> provinces = new ArrayList<>();
         Connection connection = null;
+        PreparedStatement stmt = null;
         try {
             connection = DB.getCon();
-            PreparedStatement pstmt = connection.prepareStatement("select id, name from province");
+            stmt = connection.prepareStatement("select id, name from province");
 
-            ResultSet result = pstmt.executeQuery();
+            ResultSet result = stmt.executeQuery();
 
             while (result.next()) {
                 Province prov = new Province();
@@ -56,10 +68,19 @@ public class PlainProvDao implements ProvDao {
 
                 provinces.add(prov);
             }
-            pstmt.close();
         } catch (SQLException ex) {
             System.out.println("database conn error");
         } finally{
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //
+            }
         }
         return provinces; 
     }
@@ -68,11 +89,12 @@ public class PlainProvDao implements ProvDao {
 
         List<Province> provinces = new ArrayList<>();
         Connection connection = null;
+        PreparedStatement stmt = null;
         try {
             connection = DB.getCon();
-            PreparedStatement pstmt = connection.prepareStatement("select t1.id, t1.name, t2.pid, t2.code, t2.name as cname from province t1, pcity t2 where t1.id = t2.pid");
+            stmt = connection.prepareStatement("select t1.id, t1.name, t2.pid, t2.code, t2.name as cname from province t1, pcity t2 where t1.id = t2.pid");
 
-            ResultSet result = pstmt.executeQuery();
+            ResultSet result = stmt.executeQuery();
 
             Map<String, Province> map = new HashMap<>();
             Province prov;
@@ -120,6 +142,17 @@ public class PlainProvDao implements ProvDao {
             
         } catch (SQLException ex) {
             System.out.println("database conn error");
+        } finally{
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //
+            }
         } 
         return provinces;
     }

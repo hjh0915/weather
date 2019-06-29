@@ -15,12 +15,13 @@ public class PlainCityDao implements CityDao {
         City c;
         List<City> cities = new ArrayList<>();
         Connection connection = null;
+        PreparedStatement stmt = null;
         try {
             connection = DB.getCon();
-            PreparedStatement pstmt = connection.prepareStatement("select code, name from pcity where pid = ?");
-            pstmt.setString(1, pid);
+            stmt = connection.prepareStatement("select code, name from pcity where pid = ?");
+            stmt.setString(1, pid);
 
-            ResultSet result = pstmt.executeQuery();
+            ResultSet result = stmt.executeQuery();
 
             while (result.next()) {
                 String code = result.getString("code");
@@ -32,10 +33,20 @@ public class PlainCityDao implements CityDao {
                 c.setName(name);
                 cities.add(c);
             }
-            pstmt.close();
+            
         } catch (SQLException ex) {
             System.out.println("database conn error");
         } finally{
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //
+            }
         }
         return cities;
     }
