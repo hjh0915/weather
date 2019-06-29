@@ -28,6 +28,12 @@ spring boot
 另: 了解gradle, groovy, jsp等
 注: zetcode.com 网站有相当多的代码示例
 
+数据库建立
+========
+sudo su
+su - postgres
+createdb -E utf8 -O jxyz test
+
 多项目构建
 ========
 
@@ -44,7 +50,7 @@ weather09, weather11, weather14 子项目中各包含 build.gradle 文件
 
 新建gradle子项目
 ==============
-将其中的build文件夹删除 
+将其中的build文件夹删除, 也可用gradle :xxxx:clean
 
 执行gradle子项目
 ==============

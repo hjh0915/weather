@@ -27,3 +27,7 @@ dependencies {
 
 // Define the main class for the application
 mainClassName = 'weather.App'
+
+shadowJar {
+    exclude '**/*.sql'
+}
