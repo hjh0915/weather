@@ -9,13 +9,18 @@ import java.util.*;
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
 import com.jxgm.service.*;
+import com.jxgm.DBConnection.DB;
+
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 public class App {
 
     public static void main(String[] args) throws IOException {
 
-        IProvinceService pservice = new ProvinceService();
-        List<Province> provinces = pservice.findAll();
+        SimpleDriverDataSource ds = DB.getDataSource();
+        ProvinceService pservice = new ProvinceService();
+        pservice.setDataSource(ds);
+        List<Province> provinces = pservice.findAllWithCities();
 
         for (Province p: provinces) {
             System.out.println(p);

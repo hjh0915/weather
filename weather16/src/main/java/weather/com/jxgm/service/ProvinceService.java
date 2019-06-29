@@ -1,23 +1,21 @@
 package com.jxgm.service;
 
 import java.util.List;
+import javax.sql.DataSource;
+
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
 import com.jxgm.DBConnection.DB;
 
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class ProvinceService implements IProvinceService {
     PlainProvDao provDao = new PlainProvDao();
     PlainCityDao cityDao = new PlainCityDao();
 
-    public ProvinceService() {
-        SimpleDriverDataSource ds = DB.getDataSource();
-        JdbcTemplate jtm = new JdbcTemplate(ds);
-
-        provDao.setJdbcTemplate(jtm);
-        cityDao.setJdbcTemplate(jtm);
+    public void setDataSource(DataSource dataSource) {
+        provDao.setDataSource(dataSource);
+        cityDao.setDataSource(dataSource);
     }
 
     public List<Province> findAll() {

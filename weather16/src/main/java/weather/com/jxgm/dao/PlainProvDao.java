@@ -1,20 +1,24 @@
 package com.jxgm.dao;
 
 import java.util.*;
+import javax.sql.DataSource;
 
 import com.jxgm.entities.Province;
 import com.jxgm.entities.City;
 
-import com.jxgm.DBConnection.DB;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 //省
 public class PlainProvDao implements ProvDao {
+    private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+        jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.setDataSource(dataSource);
     }
 
     public Province findById(String id) {    
