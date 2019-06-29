@@ -13,10 +13,10 @@ weather09 多线程获取天气预报
 weather11 jdbc 写入数据库
 weather14 jdbc 读取数据库，并转为对象
 weather15 单元测试 entity, dao, service分离
+weather16 spring jdbc template
 
 annotation 注解 (lombok等)
 
-spring jdbc template
 spring data jpa (hibernate)
 设计模式
 
