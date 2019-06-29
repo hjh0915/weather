@@ -11,8 +11,6 @@ import com.jxgm.entities.*;
 import com.jxgm.service.*;
 
 public class App {
-    private static ProvDao provDao = new PlainProvDao();
-    private static CityDao cityDao = new PlainCityDao();
 
     public static void main(String[] args) throws IOException {
 
@@ -23,27 +21,27 @@ public class App {
 
             List<Province> provinces = pservice.findAll();
 
-            for (Province p: provinces) {
+            // for (Province p: provinces) {
 
-                System.out.println(p);
-                System.out.println(p.getCities());
-            }
+            //     System.out.println(p);
+            //     System.out.println(p.getCities());
+            // }
 
             long endTime = System.currentTimeMillis();
-            System.out.println("程序运行时间：" + (endTime - startTime)/1000 + "s");
+            System.out.println("程序运行时间：" + (endTime - startTime)/1000.0 + "s");
             
 
             long startTime1 = System.currentTimeMillis();
             List<Province> provinces2 = pservice.findAllWithCities();
             
-            for (Province p: provinces2) {
+            // for (Province p: provinces2) {
 
-                System.out.println(p);
-                System.out.println(p.getCities());
-            }
+            //     System.out.println(p);
+            //     System.out.println(p.getCities());
+            // }
 
             long endTime1 = System.currentTimeMillis();
-            System.out.println("程序运行时间：" + (endTime1 - startTime1)/1000 + "s");
+            System.out.println("程序运行时间：" + (endTime1 - startTime1)/1000.0 + "s");
 
         } catch(Exception e) {
 		}
