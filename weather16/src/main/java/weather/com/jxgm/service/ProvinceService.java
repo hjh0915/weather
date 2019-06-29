@@ -7,41 +7,32 @@ import com.jxgm.DBConnection.DB;
 
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 public class ProvinceService implements IProvinceService {
-    SimpleDriverDataSource ds = DB.getDataSource();
-    JdbcTemplate jtm = new JdbcTemplate(ds);
+    PlainProvDao provDao = new PlainProvDao();
+    PlainCityDao cityDao = new PlainCityDao();
 
-    public List<Province> findAll() {
-
-        ProvDao provDao = new PlainProvDao();
-        CityDao cityDao = new PlainCityDao();
+    public ProvinceService() {
+        SimpleDriverDataSource ds = DB.getDataSource();
+        JdbcTemplate jtm = new JdbcTemplate(ds);
 
         provDao.setJdbcTemplate(jtm);
         cityDao.setJdbcTemplate(jtm);
+    }
 
+    public List<Province> findAll() {
         List<Province> provinces = provDao.findAll();
         
         for (Province p: provinces) {
             String id = p.getId();
-
             List<City> cities = cityDao.findByPid(id);
-
             p.setCities(cities); 
         }  
-
         return provinces;
     }
 
     public List<Province> findAllWithCities() {
-
-        ProvDao provDao = new PlainProvDao();
-
-        provDao.setJdbcTemplate(jtm);
-
         List<Province> prov = provDao.findAllWithCities();
-
         return prov;
     }    
 }

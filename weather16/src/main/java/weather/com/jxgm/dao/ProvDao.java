@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public interface ProvDao {
-    void setJdbcTemplate(JdbcTemplate jdbcTemplate);
-
     Province findById(String id);   //通过id找到province
     List<Province> findAll();
     List<Province> findAllWithCities();

@@ -18,7 +18,6 @@ public class App {
         List<Province> provinces = pservice.findAll();
 
         for (Province p: provinces) {
-
             System.out.println(p);
             System.out.println(p.getCities());
         }
