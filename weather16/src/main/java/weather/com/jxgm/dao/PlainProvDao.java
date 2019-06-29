@@ -8,19 +8,13 @@ import com.jxgm.entities.City;
 import com.jxgm.DBConnection.DB;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 //省
 public class PlainProvDao implements ProvDao {
     private JdbcTemplate jdbcTemplate;
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     public Province findById(String id) {    
@@ -38,7 +32,7 @@ public class PlainProvDao implements ProvDao {
         String sql = "select t1.id, t1.name, t2.pid, t2.code, t2.name as cname" +
                      " from province t1, pcity t2 where t1.id = t2.pid;";
 
-        return namedParameterJdbcTemplate.query(sql, result -> {
+        return jdbcTemplate.query(sql, result -> {
             Map<String, Province> map = new HashMap<>();
             Province prov;
 

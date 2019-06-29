@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 public class ProvinceService implements IProvinceService {
     SimpleDriverDataSource ds = DB.getDataSource();
     JdbcTemplate jtm = new JdbcTemplate(ds);
-    NamedParameterJdbcTemplate njtm = new NamedParameterJdbcTemplate(ds);
 
     public List<Province> findAll() {
 
@@ -20,8 +19,6 @@ public class ProvinceService implements IProvinceService {
         CityDao cityDao = new PlainCityDao();
 
         provDao.setJdbcTemplate(jtm);
-        provDao.setNamedParameterJdbcTemplate(njtm);
-
         cityDao.setJdbcTemplate(jtm);
 
         List<Province> provinces = provDao.findAll();
@@ -42,7 +39,6 @@ public class ProvinceService implements IProvinceService {
         ProvDao provDao = new PlainProvDao();
 
         provDao.setJdbcTemplate(jtm);
-        provDao.setNamedParameterJdbcTemplate(njtm);
 
         List<Province> prov = provDao.findAllWithCities();
 
