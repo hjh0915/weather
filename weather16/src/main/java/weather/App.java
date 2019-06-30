@@ -10,14 +10,13 @@ import com.jxgm.dao.*;
 import com.jxgm.entities.*;
 import com.jxgm.service.*;
 import com.jxgm.DBConnection.DB;
-
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import javax.sql.DataSource;
 
 public class App {
 
     public static void main(String[] args) throws IOException {
 
-        SimpleDriverDataSource ds = DB.getDataSource();
+        DataSource ds = DB.getDataSource();
         ProvinceService pservice = new ProvinceService();
         pservice.setDataSource(ds);
         List<Province> provinces = pservice.findAllWithCities();

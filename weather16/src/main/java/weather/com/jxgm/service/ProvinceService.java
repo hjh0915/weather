@@ -5,9 +5,6 @@ import javax.sql.DataSource;
 
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
-import com.jxgm.DBConnection.DB;
-
-import org.springframework.jdbc.core.JdbcTemplate;
 
 public class ProvinceService implements IProvinceService {
     PlainProvDao provDao = new PlainProvDao();

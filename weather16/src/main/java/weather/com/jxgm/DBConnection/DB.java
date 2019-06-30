@@ -1,15 +1,15 @@
 package com.jxgm.DBConnection;
-import java.sql.*;
-import java.util.*;
+
+import java.util.Properties;
+import java.sql.Driver;
 import java.io.InputStream;
 import java.io.IOException;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 public class DB {
 	
-	static Properties getConnectionData() {
+	private static Properties getConnectionData() {
 
 		Properties props = new Properties();
 
