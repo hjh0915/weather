@@ -63,7 +63,7 @@ public class AppConfig {
         return cityDao;
     }
 
-    @Bean
+    @Bean(name="namedService")
     public ProvinceService provinceService() {
         ProvinceService pservice = new ProvinceService(provDao(), cityDao());
         pservice.setDataSource(dataSource());

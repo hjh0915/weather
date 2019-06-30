@@ -22,7 +22,7 @@ public class App {
         GenericApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         // DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
         
-        ProvinceService pservice =ctx.getBean("provinceService", ProvinceService.class);
+        ProvinceService pservice =ctx.getBean("namedService", ProvinceService.class);
         List<Province> provinces = pservice.findAllWithCities();
 
         List<Province> provincesAll = pservice.findAll();
