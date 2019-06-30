@@ -20,13 +20,14 @@ public class App {
     public static void main(String[] args) throws IOException {
 
         GenericApplicationContext ctx = new AnnotationConfigApplicationContext(DbConfig.class);
-        DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
+        // DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
         
-        ProvinceService pservice = new ProvinceService();
-        pservice.setDataSource(dataSource);
+        ProvinceService pservice =ctx.getBean("provinceService", ProvinceService.class);
         List<Province> provinces = pservice.findAllWithCities();
 
-        for (Province p: provinces) {
+        List<Province> provincesAll = pservice.findAll();
+
+        for (Province p: provincesAll) {
             System.out.println(p);
             System.out.println(p.getCities());
         }

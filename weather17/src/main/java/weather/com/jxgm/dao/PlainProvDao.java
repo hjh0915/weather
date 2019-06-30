@@ -8,7 +8,6 @@ import com.jxgm.entities.City;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.stereotype.Repository;
 
 //省
 public class PlainProvDao implements ProvDao {

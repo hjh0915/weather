@@ -6,13 +6,15 @@ import javax.sql.DataSource;
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 public class ProvinceService implements IProvinceService {
-    PlainProvDao provDao = new PlainProvDao();
-    PlainCityDao cityDao = new PlainCityDao();
+    PlainProvDao provDao;
+    PlainCityDao cityDao;
 
+    public ProvinceService(PlainProvDao provDao, PlainCityDao cityDao) {
+        this.provDao = provDao;
+        this.cityDao = cityDao;
+    }
+    
     public void setDataSource(DataSource dataSource) {
         provDao.setDataSource(dataSource);
         cityDao.setDataSource(dataSource);

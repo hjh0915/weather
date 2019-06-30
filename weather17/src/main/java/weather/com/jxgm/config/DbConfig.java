@@ -13,9 +13,12 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import javax.sql.DataSource;
 import java.sql.Driver;
 
+import com.jxgm.dao.*;
+import com.jxgm.service.*;
+
 @Configuration
 @PropertySource("classpath:test/db.properties")
-@ComponentScan(basePackages={"com.jxgm.service"})
+// @ComponentScan(basePackages={"com.jxgm.service"})
 public class DbConfig {
     @Value("${db.jdbcdriver}")
     private String jdbcdriver;
@@ -46,5 +49,25 @@ public class DbConfig {
 		} catch (ClassNotFoundException e) {
 			return null;
 		}
+    }
+
+    @Bean
+    public PlainProvDao provDao() {
+        PlainProvDao provDao = new PlainProvDao();
+        return provDao;
+    }
+
+    @Bean
+    public PlainCityDao cityDao() {
+        PlainCityDao cityDao = new PlainCityDao();
+        return cityDao;
+    }
+
+    @Bean
+    public ProvinceService provinceService() {
+        ProvinceService pservice = new ProvinceService(provDao(), cityDao());
+        pservice.setDataSource(dataSource());
+        return pservice;
+
     }
 }
