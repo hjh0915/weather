@@ -9,14 +9,14 @@ import com.jxgm.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("namedService")
 public class ProvinceService implements IProvinceService {
-    @Autowired 
+    // @Autowired 
     PlainProvDao provDao;
-    @Autowired 
+    // @Autowired 
     PlainCityDao cityDao;
     
-    @Autowired
+    // @Autowired
     public ProvinceService(PlainProvDao provDao, PlainCityDao cityDao) {
         this.provDao = provDao;
         this.cityDao = cityDao;
