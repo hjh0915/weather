@@ -9,7 +9,7 @@ import java.util.*;
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
 import com.jxgm.service.*;
-import com.jxgm.config.DbConfig;
+import com.jxgm.config.AppConfig;
 import javax.sql.DataSource;
 
 import org.springframework.context.support.GenericApplicationContext;
@@ -19,7 +19,7 @@ public class App {
 
     public static void main(String[] args) throws IOException {
 
-        GenericApplicationContext ctx = new AnnotationConfigApplicationContext(DbConfig.class);
+        GenericApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         // DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
         
         ProvinceService pservice =ctx.getBean("provinceService", ProvinceService.class);

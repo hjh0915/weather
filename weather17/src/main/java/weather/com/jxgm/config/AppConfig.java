@@ -19,7 +19,7 @@ import com.jxgm.service.*;
 @Configuration
 @PropertySource("classpath:test/db.properties")
 // @ComponentScan(basePackages={"com.jxgm.service"})
-public class DbConfig {
+public class AppConfig {
     @Value("${db.jdbcdriver}")
     private String jdbcdriver;
     @Value("${db.url}")
