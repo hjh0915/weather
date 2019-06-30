@@ -15,6 +15,14 @@ weather14 jdbc 读取数据库，并转为对象
 weather15 单元测试 entity, dao, service分离
 weather16 spring jdbc template
 
+weather17 spring ioc 容器手动装配(完全掌握Bean之间的依赖关系)
+    |
+    -----ProvinceService 依赖 PlainProvDao, PlainCityDao, 及setDataSource
+
+weather18 spring ioc 容器自动装配(对依赖关系自动处理)
+    |
+    -----@Service, @Repository, @Autowired(目前理解可自动处理Bean依赖)
+
 annotation 注解 (lombok等)
 
 spring data jpa (hibernate)
