@@ -9,7 +9,7 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '5.0.0'
     // Apply the java plugin to add support for Java
-    id 'java'
+    // id 'java'
 
     // Apply the application plugin to add support for building an application
     id 'application'
@@ -23,9 +23,9 @@ dependencies {
     implementation 'org.springframework:spring-core:5.1.8.RELEASE'
     implementation 'org.springframework:spring-beans:5.1.8.RELEASE'
     implementation 'org.springframework:spring-context:5.1.8.RELEASE'
-    implementation 'org.springframework:spring-test:5.1.8.RELEASE'
 
     // Use JUnit test framework
+    testImplementation 'org.springframework:spring-test:5.1.8.RELEASE'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.hamcrest:hamcrest-all:1.3'
 }
