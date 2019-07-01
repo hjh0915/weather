@@ -23,7 +23,7 @@ weather18 spring ioc 容器自动装配(对依赖关系自动处理)
     |
     -----@Service, @Repository, @Autowired(目前理解可自动处理Bean依赖)
 
-weather19 直接从App中自动装配
+weather19 直接从App中自动装配, 并完成spring下的junit测试
 
 annotation 注解 (lombok等)
 
