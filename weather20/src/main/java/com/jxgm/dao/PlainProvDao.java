@@ -1,6 +1,10 @@
 package com.jxgm.dao;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.sql.DataSource;
 
 import com.jxgm.entities.Province;
@@ -36,7 +40,8 @@ public class PlainProvDao implements ProvDao {
 
     public List<Province> findAllWithCities() {
         String sql = "select t1.id, t1.name, t2.pid, t2.code, t2.name as cname" +
-                     " from province t1, pcity t2 where t1.id = t2.pid;";
+                     " from province t1, pcity t2 where t1.id = t2.pid" +
+                     " and t2.code is not null";
 
         return jdbcTemplate.query(sql, result -> {
             Map<String, Province> map = new HashMap<>();

@@ -17,7 +17,6 @@ import static org.junit.Assert.assertThat;
 
 import com.jxgm.entities.*;
 import com.jxgm.service.*;
-import com.jxgm.config.AppConfig;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes={AppConfig.class})
@@ -27,9 +26,9 @@ public class AppTest {
     private ProvinceService pservice;
 
     @Test 
-    public void testFindAll() {
-        List<Province> p = pservice.findAll();
-        assertThat(p.size(), equalTo(34));
+    public void testFindWithCities() {
+        List<Province> p = pservice.findAllWithCities();
+        assertThat(p.size(), equalTo(33));
     }
 
     @Test 

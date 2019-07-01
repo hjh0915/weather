@@ -3,9 +3,6 @@ package com.jxgm.config;
 import javax.sql.DataSource;
 import java.sql.Driver;
 
-import com.jxgm.dao.*;
-import com.jxgm.service.*;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.PropertySource;
