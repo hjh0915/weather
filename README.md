@@ -27,6 +27,10 @@ weather19 直接从App中自动装配, 并完成spring下的junit测试
     \
      ----hamcrest中assertThat作为断言处理
      
+weather20 spring mvc + pebble template
+    \
+     ----gradle :weather20:jettyRun
+     
 annotation 注解 (lombok等)
 
 spring data jpa (hibernate)
