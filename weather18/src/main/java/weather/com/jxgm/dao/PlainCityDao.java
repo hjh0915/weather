@@ -8,7 +8,10 @@ import com.jxgm.entities.City;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
+import org.springframework.stereotype.Repository;
+
 //城市
+@Repository
 public class PlainCityDao implements CityDao {
 
     private DataSource dataSource;

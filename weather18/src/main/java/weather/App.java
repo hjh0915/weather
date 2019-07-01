@@ -22,14 +22,20 @@ public class App {
         GenericApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         // DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
         
-        ProvinceService pservice =ctx.getBean("namedService", ProvinceService.class);
+        ProvinceService pservice = ctx.getBean("namedService", ProvinceService.class);
         List<Province> provinces = pservice.findAllWithCities();
 
-        List<Province> provincesAll = pservice.findAll();
+        // List<Province> provincesAll = pservice.findAll();
 
-        for (Province p: provincesAll) {
+        for (Province p: provinces) {
             System.out.println(p);
             System.out.println(p.getCities());
         }
+
+        PlainCityDao cityDao = ctx.getBean(PlainCityDao.class);
+        PlainProvDao ProvDao = ctx.getBean(PlainProvDao.class);
+
+        List<City> cities = cityDao.findByPid("16");
+        System.out.println(cities);
     }
 }
