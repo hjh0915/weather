@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Collections;
 
 import javax.sql.DataSource;
 
 import com.jxgm.entities.Province;
 import com.jxgm.entities.City;
+import com.jxgm.util.MyIntComparator;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -70,7 +72,9 @@ public class PlainProvDao implements ProvDao {
                 prov.addCity(city);
             }
 
-            return new ArrayList<Province>(map.values());
+            List<Province> provinces = new ArrayList<Province>(map.values());
+            Collections.sort(provinces, new MyIntComparator());
+            return provinces;
         });
     }
 }
