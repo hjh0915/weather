@@ -37,3 +37,7 @@ dependencies {
 gretty {
     managedClassReload = true
 }
+
+processResources{ 
+    exclude '**/*.sql' 
+} 
