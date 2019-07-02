@@ -1,7 +1,6 @@
 package com.jxgm.dao;
 
 import java.util.*;
-import javax.sql.DataSource;
 
 import com.jxgm.entities.City;
 
@@ -14,13 +13,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PlainCityDao implements CityDao {
 
-    private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(dataSource);
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public List<City> findByPid(String pid) {

@@ -1,11 +1,11 @@
 package com.jxgm.service;
 
 import java.util.List;
-import javax.sql.DataSource;
 
 import com.jxgm.dao.*;
 import com.jxgm.entities.*;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +23,9 @@ public class ProvinceService implements IProvinceService {
     }
 
     @Autowired
-    public void setDataSource(DataSource dataSource) {
-        provDao.setDataSource(dataSource);
-        cityDao.setDataSource(dataSource);
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {  
+        provDao.setJdbcTemplate(jdbcTemplate);
+        cityDao.setJdbcTemplate(jdbcTemplate);
     }
 
     public List<Province> findAll() {

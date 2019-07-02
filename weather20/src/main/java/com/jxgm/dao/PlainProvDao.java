@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Collections;
 
-import javax.sql.DataSource;
-
 import com.jxgm.entities.Province;
 import com.jxgm.entities.City;
 import com.jxgm.util.MyIntComparator;
@@ -20,13 +18,10 @@ import org.springframework.stereotype.Repository;
 //省
 @Repository
 public class PlainProvDao implements ProvDao {
-    private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(dataSource);
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public Province findById(String id) {    
