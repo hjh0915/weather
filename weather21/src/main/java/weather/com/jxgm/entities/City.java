@@ -6,14 +6,18 @@ import javax.persistence.*;
 @Table(name="city")
 public class City {
     
-    String code;
-    int pid;
-    String name;
-
-    Province province;
-
     @Id
     @Column(name="code", nullable=false)
+    String code;
+
+    @Column(name="name", nullable=false, length=100)
+    String name;
+
+    @ManyToOne
+    @JoinColumn(name="PID")
+    Province province;
+
+    
     public String getCode() {
         return code;
     }
@@ -22,16 +26,6 @@ public class City {
         this.code = code;
     }
 
-    @Column(name="pid", nullable=false)
-    public int getPid() {
-        return pid;
-    }
-
-    public void setPid(int pid) {
-        this.pid = pid;
-    }
-
-    @Column(name="name", nullable=false, length=100)
     public String getName() {
         return name;
     }

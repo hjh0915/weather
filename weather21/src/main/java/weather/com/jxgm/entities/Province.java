@@ -6,6 +6,21 @@ import java.util.Set;
 
 @Entity
 @Table(name="province")
+@NamedQueries({
+    @NamedQuery(name=Singer.FIND_ALL, 
+        query="select s from Province s"),
+    @NamedQuery(name=Singer.FIND_PROVINCE_BY_ID,
+        query="select distinct s from Province s " +
+                "left join fetch s.cities a " +
+                "where s.id = :id"),
+    @NamedQuery(name=Singer.FIND_ALL_WITH_CITY,
+        query="select distinct s from Province s " +
+                "left join fetch s.cities a ")
+})
+@SqlResultSetMapping(
+    name="provinceResult",
+    entities=@EntityResult(entityClass=Province.class)
+)
 public class Province {
     
     int id;
@@ -18,13 +33,13 @@ public class Province {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id; 
-    }
-
     @Column(name="name", nullable=false, length=100)
     public String getName() {
         return name;
+    }
+
+    public void setId(int id) {
+        this.id = id; 
     }
 
     public void setName(String name) {

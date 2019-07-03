@@ -64,8 +64,7 @@ class Place {
 
 public class App {
 
-    public static void main(String[] args) throws IOException {
-
+    public List<Place> getProvinces() {
         Gson gson = new GsonBuilder().create();
 
         Map<Place, List<Place>> cmap = new HashMap<>();
@@ -94,7 +93,6 @@ public class App {
                 provinces.add(e);
             }
         });
-        //System.out.println(provinces);
 
         for (Place p : provinces) {
             List<Place> cities = new ArrayList<>();
@@ -105,42 +103,29 @@ public class App {
             }
             cmap.put(p, cities);
         }
-        //System.out.println(cmap);
 
-        try {
-            Class.forName("org.postgresql.Driver");
-            String url="jdbc:postgresql://localhost:5432/shop";
-            String user = "hjh";
-            String pwd = "1234";
-            Connection con = DriverManager.getConnection(url, user, pwd);
-            // con.setAutoCommit(false);
+        return provinces;
+    }
 
+    public static void main(String[] args) throws IOException {
+
+        ProvService provService;
+
+        List<Place> provinces = getProvinces();
         
-            Statement st = con.createStatement();
-            String sql = "insert into province (id, name) values (?, ?)";
+        for (Map.Entry<Place, List<Place>> c: cmap.entrySet()) {
+            Place k = cmap.getKey();
+            Province province = new Province();
+            province.setId(k.getId());
+            province.setName(k.getCityname());
 
-            PreparedStatement pstmt = con.prepareStatement(sql);
-            for (Place p: provinces) {
-                pstmt.setInt(1, p.getId());
-                pstmt.setString(2, p.getCityname());
-                
-                pstmt.execute();  //执行传入的sql语句
+            for (Place x: c.getValue()) {
+                City city = new City();
+                city.setCode(x.getCitycode());
+                city.setName(x.getCityname());
+                province.addCity(city);
             }
-
-            sql = "insert into pcity (pid, code, name) values(?, ?, ?)";
-            pstmt = con.prepareStatement(sql);
-            for (Map.Entry<Place, List<Place>> c: cmap.entrySet()) {
-                for (Place x: c.getValue()) {
-                    pstmt.setInt(1, x.getPid());
-                    pstmt.setString(2, x.getCitycode());
-                    pstmt.setString(3, x.getCityname());
-                    pstmt.execute(); 
-                }
-            }
-            //con.commit();
         }
-        catch(Exception e){
-			e.printStackTrace();
-		}
+
     }
 }
