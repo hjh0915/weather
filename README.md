@@ -31,6 +31,8 @@ weather20 spring mvc + pebble template
     \
      ----gradle :weather20:jettyRun
      
+weather21 spring data jpa写入数据
+
 annotation 注解 (lombok等)
 
 spring data jpa (hibernate)
