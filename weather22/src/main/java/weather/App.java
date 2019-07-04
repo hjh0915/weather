@@ -32,5 +32,10 @@ public class App {
         
         provinces = provService.findAll();
         provinces.forEach(System.out::println);
+
+        System.out.println("-----------------------------");
+
+        provinces = provService.findAllByNativeQuery();
+        provinces.forEach(System.out::println);
     }
 }

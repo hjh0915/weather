@@ -18,6 +18,9 @@ import javax.persistence.TypedQuery;
 @SuppressWarnings("unchecked")
 public class ProvServiceImpl implements ProvService {
 
+    final static String ALL_PROVINCE_NATIVE_QUERY =
+        "select id, name from province";
+
     @PersistenceContext
     private EntityManager em;
 
@@ -49,4 +52,10 @@ public class ProvServiceImpl implements ProvService {
         List<Province> provinces = em.createNamedQuery(Province.FIND_ALL, Province.class).getResultList();
         return provinces;
     }
+
+    @Transactional(readOnly=true)
+    @Override
+    public List<Province> findAllByNativeQuery() {
+        return em.createNativeQuery(ALL_PROVINCE_NATIVE_QUERY, "provinceResult").getResultList();
+    }    
 }

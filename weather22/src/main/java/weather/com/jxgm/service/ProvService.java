@@ -7,5 +7,8 @@ public interface ProvService {
     Province findById(Long id);
     List<Province> findAll();
     List<Province> findAllWithCity();
+    
+    List<Province> findAllByNativeQuery();
+
     Province save(Province province);
 }
