@@ -3,17 +3,18 @@ package com.jxgm.entities;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.io.Serializable;
 
 @Entity
 @Table(name="province")
 @NamedQueries({
-    @NamedQuery(name=Singer.FIND_ALL, 
+    @NamedQuery(name=Province.FIND_ALL, 
         query="select s from Province s"),
-    @NamedQuery(name=Singer.FIND_PROVINCE_BY_ID,
+    @NamedQuery(name=Province.FIND_PROVINCE_BY_ID,
         query="select distinct s from Province s " +
                 "left join fetch s.cities a " +
                 "where s.id = :id"),
-    @NamedQuery(name=Singer.FIND_ALL_WITH_CITY,
+    @NamedQuery(name=Province.FIND_ALL_WITH_CITY,
         query="select distinct s from Province s " +
                 "left join fetch s.cities a ")
 })
@@ -21,15 +22,19 @@ import java.util.Set;
     name="provinceResult",
     entities=@EntityResult(entityClass=Province.class)
 )
-public class Province {
+public class Province implements Serializable {
     
-    int id;
+    public static final String FIND_ALL = "Province.findAll";
+    public static final String FIND_PROVINCE_BY_ID = "Province.findById";
+    public static final String FIND_ALL_WITH_CITY = "Province.findAllWithCity";
+
+    Long id;
     String name;
     Set<City> cities = new HashSet<>();
 
     @Id
     @Column(name="id", nullable=false)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -38,7 +43,7 @@ public class Province {
         return name;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id; 
     }
 
@@ -48,7 +53,7 @@ public class Province {
 
     public boolean addCity(City city) {
         city.setProvince(this);
-		return getCities().add(city);
+		getCities().add(city);
 
         return true;
     }
@@ -57,12 +62,12 @@ public class Province {
 		getCities().remove(city);
 	}
 
-    public void setCities(List<City> cities) {
+    public void setCities(Set<City> cities) {
         this.cities = cities;
     }
 
     @OneToMany(mappedBy="province", cascade=CascadeType.ALL, orphanRemoval=true)
-    public List<City> getCities() {
+    public Set<City> getCities() {
         return cities;
     }
 

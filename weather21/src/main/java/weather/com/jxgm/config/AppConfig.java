@@ -15,6 +15,7 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -22,32 +23,30 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({"classpath:db.properties"})
-@ComponentScan(basePackages={"com.jxgm.service"})
+@PropertySource("classpath:db.properties")
+@ComponentScan(basePackages={"com.jxgm.service", "com.jxgm.config"})
 public class AppConfig {
 
     @Autowired
     private Environment env;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan("com.jxgm.entities");
-        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-        entityManagerFactoryBean.setJpaProperties(additionalProperties());
-
-        return entityManagerFactoryBean;
+	public EntityManagerFactory entityManagerFactory() {
+		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+		factoryBean.setPackagesToScan("com.jxgm.entities");
+		factoryBean.setDataSource(dataSource());
+		factoryBean.setJpaProperties(hibernateProperties());
+		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+		factoryBean.afterPropertiesSet();
+		return factoryBean.getNativeEntityManagerFactory();
     }
 
-    final Properties additionalProperties() {
+    final Properties hibernateProperties() {
         final Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
         hibernateProperties.setProperty("hibernate.cache.use_second_level_cache", env.getProperty("hibernate.cache.use_second_level_cache"));
         hibernateProperties.setProperty("hibernate.cache.use_query_cache", env.getProperty("hibernate.cache.use_query_cache"));
-        // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
         return hibernateProperties;
     }
 
@@ -62,14 +61,12 @@ public class AppConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
-        final JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(emf);
-        return transactionManager;
-    }
+	public PlatformTransactionManager transactionManager() {
+		return new JpaTransactionManager(entityManagerFactory());
+	}
 
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
+	@Bean
+	public JpaVendorAdapter jpaVendorAdapter() {
+		return new HibernateJpaVendorAdapter();
+	}
 }

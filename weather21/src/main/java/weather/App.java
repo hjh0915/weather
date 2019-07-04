@@ -20,54 +20,17 @@ import java.sql.*;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-class Place {
-    int _id;
-    int id;
-    int pid;
-    String city_code;
-    String city_name;
+import com.jxgm.config.AppConfig;
+import com.jxgm.service.ProvService;
+import com.jxgm.service.ProvServiceImpl;
+import com.jxgm.entities.Province;
+import com.jxgm.entities.City;
 
-    @Override
-    public String toString() {
-        return "city_code:" + this.city_code + " " + "city_name:" + this.city_name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getPid() {
-        return pid;
-    }
-
-    public void setPid(int pid) {
-        this.pid = pid;
-    }
-    
-    public String getCitycode() {
-        return city_code;
-    }
-
-    public void setCitycode(String city_code) {
-        this.city_code = city_code;
-    }
-
-    public String getCityname() {
-        return city_name;
-    }
-
-    public void setCityname(String city_name) {
-        this.city_name = city_name;
-    }
-}
+import weather.Place;
 
 public class App {
 
-    public Map<Place, List<Place>> getProvinces() {
+    public static Map<Place, List<Place>> getProvinces() throws IOException {
         Gson gson = new GsonBuilder().create();
 
         Map<Place, List<Place>> cmap = new HashMap<>();
@@ -100,7 +63,7 @@ public class App {
         for (Place p : provinces) {
             List<Place> cities = new ArrayList<>();
             for (int i=0; i<places.length; i++) {
-                if (places[i].pid == p.id) {
+                if (places[i].pid == p.id && !places[i].city_code.equals("")) {
                     cities.add(places[i]);
                 }
             }
@@ -118,9 +81,9 @@ public class App {
         Map<Place, List<Place>> cmap = getProvinces();
         
         for (Map.Entry<Place, List<Place>> c: cmap.entrySet()) {
-            Place k = cmap.getKey();
+            Place k = c.getKey();
             Province province = new Province();
-            province.setId(k.getId());
+            province.setId(new Long((long)k.getId()));
             province.setName(k.getCityname());
 
             for (Place x: c.getValue()) {
@@ -130,7 +93,7 @@ public class App {
                 province.addCity(city);
             }
 
-            ProvService.save(province);
+            provService.save(province);
         }
 
     }

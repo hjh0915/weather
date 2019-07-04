@@ -1,10 +1,11 @@
 package com.jxgm.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="city")
-public class City {
+public class City implements Serializable {
     
     @Id
     @Column(name="code", nullable=false)
@@ -14,9 +15,10 @@ public class City {
     String name;
 
     @ManyToOne
-    @JoinColumn(name="PID")
+    @JoinColumn(name="pid")
     Province province;
 
+    public City() {}
     
     public String getCode() {
         return code;
@@ -40,6 +42,6 @@ public class City {
 
     @Override
     public String toString() {
-        return "pid:" + pid + ", code:" + code + ", name:" + name;
+        return "code:" + code + ", name:" + name;
     }
 }
