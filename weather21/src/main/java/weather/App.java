@@ -17,6 +17,9 @@ import com.google.gson.GsonBuilder;
 
 import java.sql.*;
 
+import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 class Place {
     int _id;
     int id;
@@ -64,7 +67,7 @@ class Place {
 
 public class App {
 
-    public List<Place> getProvinces() {
+    public Map<Place, List<Place>> getProvinces() {
         Gson gson = new GsonBuilder().create();
 
         Map<Place, List<Place>> cmap = new HashMap<>();
@@ -104,14 +107,15 @@ public class App {
             cmap.put(p, cities);
         }
 
-        return provinces;
+        return cmap;
     }
 
     public static void main(String[] args) throws IOException {
 
-        ProvService provService;
+        GenericApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        ProvService provService = ctx.getBean("jpaProvinceService", ProvService.class);
 
-        List<Place> provinces = getProvinces();
+        Map<Place, List<Place>> cmap = getProvinces();
         
         for (Map.Entry<Place, List<Place>> c: cmap.entrySet()) {
             Place k = cmap.getKey();
@@ -125,6 +129,8 @@ public class App {
                 city.setName(x.getCityname());
                 province.addCity(city);
             }
+
+            ProvService.save(province);
         }
 
     }
