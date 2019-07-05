@@ -21,6 +21,7 @@ public class ProvServiceImpl implements ProvService {
     final static String ALL_PROVINCE_NATIVE_QUERY =
         "select id, name from province";
 
+    // 线程安全
     @PersistenceContext
     private EntityManager em;
 

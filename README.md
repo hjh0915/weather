@@ -31,7 +31,15 @@ weather20 spring mvc + pebble template
     \
      ----gradle :weather20:jettyRun
      
-weather21 spring data jpa写入数据
+weather21 jpa写入数据
+
+weather22 jpa读取数据
+
+weather23 spring data jpa 读取数据
+    \
+     ----配置增加 @EnableJpaRepositories, 采用 CrudRepository
+     |
+     ----fetch=FetchType.EAGER与LAZY的区别
 
 annotation 注解 (lombok等)
 
