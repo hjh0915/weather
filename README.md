@@ -40,6 +40,8 @@ weather23 spring data jpa 读取数据
      ----配置增加 @EnableJpaRepositories, 采用 CrudRepository
      |
      ----fetch=FetchType.EAGER与LAZY的区别
+     |
+     ----集成 spring jdbc template 查询
 
 annotation 注解 (lombok等)
 

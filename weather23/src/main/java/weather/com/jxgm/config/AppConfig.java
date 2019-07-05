@@ -21,10 +21,13 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+import com.jxgm.dao.*;
+
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
-@ComponentScan(basePackages={"com.jxgm.service"})
+@ComponentScan(basePackages={"com.jxgm.service", "com.jxgm.dao"})
 @EnableJpaRepositories(basePackages = {"com.jxgm"})
 public class AppConfig {
 
@@ -70,4 +73,11 @@ public class AppConfig {
 	public JpaVendorAdapter jpaVendorAdapter() {
 		return new HibernateJpaVendorAdapter();
 	}
+
+    @Bean 
+    public JdbcTemplate jdbcTemplate() {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.setDataSource(dataSource());
+        return jdbcTemplate;
+    }
 }

@@ -12,6 +12,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.jxgm.config.AppConfig;
 import com.jxgm.service.ProvService;
+import com.jxgm.service.ProvServiceImpl;
+import com.jxgm.service.IJProvinceService;
+import com.jxgm.service.JProvinceService;
 import com.jxgm.entities.Province;
 
 public class App {
@@ -29,6 +32,11 @@ public class App {
         }
 
         System.out.println(provService.findAll());
+
+        IJProvinceService pservice = ctx.getBean("namedService", JProvinceService.class);
+        List<Province> provinces = pservice.findAllWithCities();
+
+        System.out.println(provinces);
 
     }
 }
