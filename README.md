@@ -60,7 +60,11 @@ spring boot
 ========
 sudo su
 su - postgres
-createdb -E utf8 -O jxyz test
+createuser -P jxyz (1234)
+createdb -E utf8 -O jxyz test 
+
+test 随意
+jpatest 规范
 
 多项目构建
 ========
