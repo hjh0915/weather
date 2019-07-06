@@ -19,14 +19,18 @@ import com.jxgm.service.*;
 import com.jxgm.entities.*;
 import java.util.Optional;
 
+// @SpringBootApplication相当于三个注解
+// 因weather24沿袭了之前的代码结构，所以需要部分自定义配置，才能装配相关的bean
 @SpringBootApplication(scanBasePackages="com.jxgm")
-@EnableJpaRepositories(basePackages = "com.jxgm")
+@EnableJpaRepositories(basePackages="com.jxgm")
 @EntityScan("com.jxgm.entities")
 public class Application {
     private static Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(Application.class, args);
+
+        // 打印输出spring boot自动装配的bean
         // Arrays.stream(ctx.getBeanDefinitionNames()).forEach(logger::info);
 
         ProvService pservice = ctx.getBean(ProvService.class);
@@ -38,6 +42,8 @@ public class Application {
         }   
     }
 
+    // 与之前的@EnableJpaRepositories, @EntityScan对应
+    // 造成MyRunner需要手动装配，所以需要自定义bean
     @Bean
     public MyRunner schedulerRunner() {
         return new MyRunner();
