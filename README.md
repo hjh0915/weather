@@ -54,6 +54,8 @@ weather25 spring boot初始化，改造之前的代码包结构
      ----WeatherApplication.java，作为包根目录最上层，@SpringBootApplication无需自定义配置
      |
      ----gradle :weather25:bootRun 运行， gradle :weather25:bootJar 打包
+     |
+     ----spring boot 会自动装配很多默认Bean，其中包括jdbcTemplate, dataSource
 
 annotation 注解 (lombok等)
 
