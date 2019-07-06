@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProvServiceImpl implements ProvService {
 
     @Autowired
-    private ProvinceRepository provinceRepository;
+    ProvinceRepository provinceRepository;
 
     @Override
     public Optional<Province> findById(Long id) {

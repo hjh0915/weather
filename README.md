@@ -43,6 +43,10 @@ weather23 spring data jpa 读取数据
      |
      ----集成 spring jdbc template 查询
 
+weather24 spring boot
+    \
+     ----spring boot 约定优于配置 @EnableJpaRepositories, @EntityScan, @Bean
+
 annotation 注解 (lombok等)
 
 spring data jpa (hibernate)

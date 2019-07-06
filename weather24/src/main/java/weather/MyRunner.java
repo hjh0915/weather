@@ -12,13 +12,9 @@ import com.jxgm.service.*;
 import com.jxgm.entities.*;
 
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Component
 public class MyRunner implements CommandLineRunner {
-
-    private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
 
     @Autowired
     private ProvService provService;
@@ -29,7 +25,7 @@ public class MyRunner implements CommandLineRunner {
         Optional<Province> p = provService.findById(new Long(16));
         if (p.isPresent()) {
             Province x = p.get();
-            logger.info("{}", x);
+            System.out.println(x);
         }
     }
 }
