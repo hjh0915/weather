@@ -43,11 +43,17 @@ weather23 spring data jpa 读取数据
      |
      ----集成 spring jdbc template 查询
 
-weather24 spring boot
+weather24 沿袭weather23代码，加spring boot
     \
      ----spring boot 自定义配置 @EnableJpaRepositories, @EntityScan, @Bean
      |
-     ----采用spring官网提供的gradle脚本改造, gradle :weather24:bootJar 打包
+     ----通过spring官网提供的gradle脚本改造, gradle :weather24:bootJar 打包
+
+weather25 spring boot初始化，改造之前的代码包结构
+    \
+     ----WeatherApplication.java，作为包根目录最上层，@SpringBootApplication无需自定义配置
+     |
+     ----gradle :weather25:bootRun 运行， gradle :weather25:bootJar 打包
 
 annotation 注解 (lombok等)
 
