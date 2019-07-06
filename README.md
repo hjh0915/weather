@@ -46,6 +46,8 @@ weather23 spring data jpa 读取数据
 weather24 spring boot
     \
      ----spring boot 自定义配置 @EnableJpaRepositories, @EntityScan, @Bean
+     |
+     ----采用spring官网提供的gradle脚本改造, gradle :weather24:bootJar 打包
 
 annotation 注解 (lombok等)
 
