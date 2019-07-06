@@ -57,6 +57,10 @@ weather25 spring boot初始化，改造之前的代码包结构
      |
      ----spring boot 会自动装配很多默认Bean，其中包括jdbcTemplate, dataSource
 
+weather26 spring boot web代码
+    \
+     ----增加controller，并采用pebble template
+     
 annotation 注解 (lombok等)
 
 spring data jpa (hibernate)
