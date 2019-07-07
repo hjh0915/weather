@@ -22,6 +22,9 @@ public class App {
         GenericApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         // DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
         
+        // 打印输出spring boot自动装配的bean
+        Arrays.stream(ctx.getBeanDefinitionNames()).forEach(System.out::println);
+
         ProvinceService pservice =ctx.getBean("namedService", ProvinceService.class);
         List<Province> provinces = pservice.findAllWithCities();
 

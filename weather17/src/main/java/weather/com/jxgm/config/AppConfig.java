@@ -53,18 +53,21 @@ public class AppConfig {
 
     @Bean
     public PlainProvDao provDao() {
+        System.out.println("provDao bean is created");
         PlainProvDao provDao = new PlainProvDao();
         return provDao;
     }
 
     @Bean
     public PlainCityDao cityDao() {
+        System.out.println("cityDao bean is created");
         PlainCityDao cityDao = new PlainCityDao();
         return cityDao;
     }
 
     @Bean(name="namedService")
     public ProvinceService provinceService() {
+        System.out.println("provinceService is created");
         ProvinceService pservice = new ProvinceService(provDao(), cityDao());
         pservice.setDataSource(dataSource());
         return pservice;
