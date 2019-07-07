@@ -1,7 +1,7 @@
 ## 学习内容
 
     java 基本知识
-    java 包及命令行构建分离
+    java 包及命令行构建分离 [helloTutor](https://github.com/myhat123/helloTutor)
     okhttp 获取页面
     gson 解析 json 格式
     jdbc 数据库连接访问
@@ -90,13 +90,11 @@
     执行jar打包
     在子项目中build.gradle中plugins增加插件
     
-    ```groovy
     plugins {
         id 'com.github.johnrengelman.shadow' version '5.0.0'
         id 'java'
         id 'application'
     }
-    ```
 
     gradle :weatherxx:shadowJar
 
