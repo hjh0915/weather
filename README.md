@@ -1,4 +1,4 @@
-##学习内容
+## 学习内容
 
     java 基本知识
     java 包及命令行构建分离
@@ -46,7 +46,7 @@
     另: 了解gradle, groovy, jsp等
     注: zetcode.com 网站有相当多的代码示例
 
-##数据库建立
+## 数据库建立
 
     sudo su
     su - postgres
@@ -56,7 +56,7 @@
     test province表, pcity表字段建立随意
     jpatest province表, city表字段约束规范
 
-##多项目构建
+## 多项目构建
 
     采用 gradle 构建
     settings.gradle 包含子项目
@@ -65,12 +65,12 @@
     使用 shadowJar 打包
     spring boot采用官方提供的gradle插件， 使用 bootJar 打包
 
-##参数外部文件
+## 参数外部文件
 
     含在 jar 包内，如 weather14 的 db.properties, weather11 的 _city.json
     读取时需要采用特别的处理 classload.getResourceAsStream()
 
-##执行gradle子项目
+## 执行gradle子项目
 
     清理构建
     gradle :xxxx:clean
@@ -89,7 +89,15 @@
 
     执行jar打包
     在子项目中build.gradle中plugins增加插件
-    id 'com.github.johnrengelman.shadow' version '5.0.0'
+    
+    ```groovy
+    plugins {
+        id 'com.github.johnrengelman.shadow' version '5.0.0'
+        id 'java'
+        id 'application'
+    }
+    ```
+
     gradle :weatherxx:shadowJar
 
     在终端执行命令行
