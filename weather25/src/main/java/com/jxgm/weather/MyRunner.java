@@ -9,19 +9,24 @@ import com.jxgm.weather.service.ProvService;
 import java.util.Optional;
 import com.jxgm.weather.entity.Province;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Component
 public class MyRunner implements CommandLineRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
 
     @Autowired
     ProvService provService;
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("okkkkkkkkkkkkkkkkkkkkk");
+        logger.info("开始打印...");
         Optional<Province> p = provService.findById(new Long(16));
         if (p.isPresent()) {
             Province x = p.get();
-            System.out.println(x);
+            logger.info("{}", x);
         }
     }
 }
