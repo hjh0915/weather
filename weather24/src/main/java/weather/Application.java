@@ -30,8 +30,8 @@ public class Application {
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = SpringApplication.run(Application.class, args);
 
-        // 打印输出spring boot自动装配的bean
-        // Arrays.stream(ctx.getBeanDefinitionNames()).forEach(logger::info);
+        //打印输出spring boot自动装配的bean
+        Arrays.stream(ctx.getBeanDefinitionNames()).forEach(System.out::println);
 
         ProvService pservice = ctx.getBean(ProvService.class);
         Optional<Province> p = pservice.findById(new Long(16));
