@@ -63,8 +63,13 @@ public class App {
         for (Place p : provinces) {
             List<Place> cities = new ArrayList<>();
             for (int i=0; i<places.length; i++) {
+                //如果市的pid等于省的id，并且市的code不为空
                 if (places[i].pid == p.id && !places[i].city_code.equals("")) {
-                    cities.add(places[i]);
+                    //如果省的名称为重庆，并且市的名称中包含了“县”,不加入市列表中
+                    if (p.city_name.equals("重庆") && places[i].city_name.contains("县")) {
+                    } else {
+                        cities.add(places[i]);
+                    }
                 }
             }
             cmap.put(p, cities);
