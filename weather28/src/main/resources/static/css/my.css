@@ -1,0 +1,73 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+body {
+  padding-top: 3.5rem;
+}
+
+a {
+  color: #404040;
+  text-decoration: none;
+}
+
+@media (min-width: 1440px) {
+  .fixed_sitemap {
+    font-size: 12px;
+    width: 1440px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .fixed_sitemap {
+    font-size: 12px;
+    width: 1200px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .fixed_sitemap {
+    font-size: 12px;
+    width: 960px;
+  }
+}
+
+
+.sitemap_con {
+  width: 220px;
+  height: 220px;
+  margin-left: 12px;
+  margin-bottom: 12px;
+  background: #e8e8e8;
+  line-height: 25px;
+}
+
+.sitemap_con strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+
+.sitemap_con strong a {
+  width: auto;
+  padding-left: 0;
+}
+
+.sitemap_con a {
+  display: inline-block;
+  width: 52px;
+  white-space: nowrap;
+  margin-left: 10px;
+}

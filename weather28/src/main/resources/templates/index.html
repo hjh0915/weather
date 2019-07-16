@@ -1,0 +1,25 @@
+{% extends 'base' %}
+
+{% block content %} 
+<div class="container-fluid">
+  <div class="row"></div>
+  <div class="d-flex justify-content-center" style="margin-top: 20px;">
+    <div class="fixed_sitemap">
+      <div class="d-flex justify-content-start flex-wrap">
+        {% for r in provinces %}
+        <div class="sitemap_con">
+          <strong>
+            <a href="https://news.163.com/#f=endnav">{{ r.name }}</a>
+          </strong>
+          <div class="d-flex flex-wrap">
+            {% for x in r.cities %}
+            <a href="#">{{ x.name }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock content%}
