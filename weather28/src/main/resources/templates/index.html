@@ -9,11 +9,11 @@
         {% for r in provinces %}
         <div class="sitemap_con">
           <strong>
-            <a href="https://news.163.com/#f=endnav">{{ r.name }}</a>
+            <a href="#">{{ r.name }}</a>
           </strong>
           <div class="d-flex flex-wrap">
             {% for x in r.cities %}
-            <a href="#">{{ x.name }}</a>
+            <a href="/city/{{ x.code }}">{{ x.name }}</a>
             {% endfor %}
           </div>
         </div>
