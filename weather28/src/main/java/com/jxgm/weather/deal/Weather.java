@@ -2,64 +2,69 @@ package com.jxgm.weather.deal;
 
 import java.util.*;
 
+import lombok.Data;
+
+@Data
 public class Weather {
-    public String cityid;
-    public String update_time; 
-    public String city;
-    public String cityEn;
-    public String country;
-    public String countryEn;
+    String cityid;
+    String update_time; 
+    String city;
+    String cityEn;
+    String country;
+    String countryEn;
 
-    List<Data> data;
+    List<MyData> data;
 
-
-    @Override
-    public String toString() {
-        return "city:" + this.city; 
-    }
 }
 
-class Data {
-    String day;
-    String date;
-    String week;
-    String wea;
-    String wea_img;
-    int air;
-    int humidity;
-    String air_leve1;
-    String air_tips;
+class MyData {
+    public String day;
+    public String date;
+    public String week;
+    public String wea;
+    public String wea_img;
+    public int air;
+    public int humidity;
+    public String air_leve1;
+    public String air_tips;
 
-    Alarm alarm;
+    public Alarm alarm;
 
-    String tem1;
-    String tem2;
-    String tem;
+    public String tem1;
+    public String tem2;
+    public String tem;
 
-    List<String> win;
+    public List<String> win;
 
-    String win_speed;
+    public String win_speed;
 
-    List<Hour> hours;
-    List<Index> indexes;
+    public List<Hour> hours;
+    public List<Index> indexes;
 }
 
 class Alarm {
-    String alarm_type;
-    String alarm_level;
-    String alarm_content;
+    public String alarm_type;
+    public String alarm_level;
+    public String alarm_content;
 }
 
 class Hour {
-    String day;
-    String wea;
-    String tem;
-    String win;
-    String win_speed;
+    public String day;
+    public String wea;
+    public String tem;
+    public String win;
+    public String win_speed;
+
+    public String getTime() {
+        int d = day.indexOf("日");
+        int len = day.length();
+
+        return day.substring(d+1, len);
+    }
 }
 
 class Index {
-    String title;
-    String level;
-    String desc;
+    public String title;
+    public String level;
+    public String desc;
 }

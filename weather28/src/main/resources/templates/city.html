@@ -1,1 +1,69 @@
-<p>{{ weather.city }}</p>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+    <title>城市天气预报</title>
+
+    <style>
+        .container {
+            width: 600px;
+            margin-top: 30px;
+        }
+
+        .row {
+            margin-top:30px;
+        }
+
+        td {
+            text-align:center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center">{{ weather.getCity() }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            {% for x in today.hours %}
+            <div class="col">
+                <p>{{ x.getTime() }}</p>
+                <p>{{ x.wea }}</p>
+                <p>{{ x.tem }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover">
+                    <tbody>
+                        {% for x in weather.getData() %}
+                        <tr>
+                            <td>{{ x.day }}</td>
+                            <td>{{ x.wea }}</td>
+                            <td>{{ x.tem1 }}/{{ x.tem2 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+</body>
+
+</html>

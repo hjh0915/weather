@@ -100,3 +100,32 @@
 
     在终端执行命令行
     java -jar weather15/build/libs/jar包名
+
+## Reload Resources
+
+    在build.gradle里面新加：
+        bootRun {
+        sourceResources sourceSets.main
+        }
+
+    在dependencies中写：
+        runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+
+## 重启Spring Boot
+
+    编译:
+        gradle :weather28:compileJava
+
+    重新编译bootrun自动重启，刷新页面即可
+
+## 自动识别页面模板(application.properties)
+
+    pebble.cache=false
+
+## lombok 简化java代码
+
+    参照lombok gradle官方文档
+
+    dependencies中：
+        compileOnly 'org.projectlombok:lombok:1.18.8'
+	    annotationProcessor 'org.projectlombok:lombok:1.18.8'

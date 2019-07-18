@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.ArrayList;
 import com.jxgm.weather.service.ProvService;
 import com.jxgm.weather.entity.Province;
 
@@ -39,6 +40,9 @@ public class MyController {
             String cityVisit = jsonClient.visit(cityUrl);
             Weather w = jsonConvert.deal(cityVisit);
             map.addAttribute("weather", w);
+            
+            map.addAttribute("today", w.getData().get(0));
+            
         } catch (Exception e) {
         } 
 
