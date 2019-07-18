@@ -8,6 +8,8 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="/css/bootstrap.css">
+  {% block extra_css %}
+  {% endblock %}
   <link rel="stylesheet" href="/css/my.css">
 
   <title>全国城市分布</title>
@@ -62,6 +64,8 @@
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="/js/jquery-3.4.1.min.js"></script>
   <script src="/js/bootstrap.js"></script>
+  {% block extra_js %}
+  {% endblock %}
 </body>
 
 </html>
