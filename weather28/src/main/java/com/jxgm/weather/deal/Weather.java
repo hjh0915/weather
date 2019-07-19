@@ -1,6 +1,7 @@
 package com.jxgm.weather.deal;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import lombok.Data;
 
@@ -15,6 +16,9 @@ public class Weather {
 
     List<MyData> data;
 
+    public List<MyData> getNotToday() {
+        return data.stream().filter(x -> (!x.day.contains("今天"))).collect(Collectors.toList());
+    }
 }
 
 class MyData {
@@ -40,6 +44,8 @@ class MyData {
 
     public List<Hour> hours;
     public List<Index> indexes;
+
+
 }
 
 class Alarm {
