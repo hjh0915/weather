@@ -42,6 +42,10 @@
     weather28 在weather27的基础上对页面进行处理 
         js中的JQuery库，使得页面成动态页面
 
+    weather29 采用@Query方式 优化省市关联查询 
+        在JpaRepository增加
+        @Query("select distinct s from Province s left join fetch s.cities a ")
+
     annotation 注解 (lombok等)
     设计模式
     j2ee servlet
