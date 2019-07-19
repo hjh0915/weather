@@ -36,6 +36,11 @@
         spring boot 会自动装配很多默认Bean，其中包括jdbcTemplate, dataSource
     weather26 spring boot web代码
         增加controller，并采用pebble template
+    weather27 采用Hibernate 解决排序问题
+        在findAll()使用了 JpaRepository
+        在实体中的一对多利用 @OrderBy
+    weather28 在weather27的基础上对页面进行处理 
+        js中的JQuery库，使得页面成动态页面
 
     annotation 注解 (lombok等)
     设计模式
