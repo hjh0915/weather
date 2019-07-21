@@ -46,6 +46,18 @@
         在JpaRepository增加
         @Query("select distinct s from Province s left join fetch s.cities a ")
 
+    weather30 采用@EntityGraph 解决查询SQL语句N+1的问题
+        在entity增加了,并且增加在@Entity上面
+        @NamedEntityGraph(name = "Province.cities", attributeNodes = {
+            @NamedAttributeNode("cities")
+        })
+
+        在JpaRepository增加
+        @Override
+        @EntityGraph(value = "Province.cities")
+        List<Province> findAll(Sort sort);
+
+
     annotation 注解 (lombok等)
     设计模式
     j2ee servlet

@@ -1,0 +1,28 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.jxgm'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+dependencies {
+    implementation 'org.postgresql:postgresql:42.2.5'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'io.pebbletemplates:pebble-spring-boot-2-starter:3.0.10'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'com.squareup.okhttp3:okhttp:3.14.1'
+	implementation 'com.google.code.gson:gson:2.8.5'
+
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+}
+
+bootRun {
+	sourceResources sourceSets.main
+}

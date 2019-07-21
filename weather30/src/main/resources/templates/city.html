@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+    <title>城市天气预报</title>
+
+    <style>
+        .container {
+            width: 600px;
+            margin-top: 10px;
+        }
+
+        .row {
+            margin-top:20px;
+        }
+
+        table td {
+            font-size: 0.8rem;
+        }
+
+        .hours {
+            font-size: 0.8rem;
+        }
+
+        .hours p {
+            margin-bottom: 0.25rem;
+        } 
+
+        h3 + p {
+            font-size:12px;
+            margin-bottom:5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center">{{ weather.getCity() }} {{ today.wea }} {{ today.tem }}</h3>
+                <p class="text-center font-italic">更新时间: {{ weather.getUpdate_time() }}</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            {% for x in today.hours %}
+            <div class="col hours">
+                <p>{{ x.getTime() }}</p>
+                <p>{{ x.wea }}</p>
+                <p>{{ x.tem }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover">
+                    <tbody>
+                        {% for x in weather.getNotToday() %}
+                        <tr>
+                            <td>{{ x.day }}</td>
+                            <td>{{ x.wea }}</td>
+                            <td class="text-right">{{ x.tem1 }}/{{ x.tem2 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+
+    <script>
+        $(function() {
+            // $(".hours").css("background-color","lightgrey");
+        });
+    </script>
+</body>
+
+</html>
