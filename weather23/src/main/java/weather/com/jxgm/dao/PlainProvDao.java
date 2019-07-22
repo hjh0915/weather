@@ -3,7 +3,7 @@ package com.jxgm.dao;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Collections;
 
 import com.jxgm.entities.Province;
@@ -26,10 +26,10 @@ public class PlainProvDao implements ProvDao {
 
     public List<Province> findAllWithCities() {
         String sql = "select t1.id, t1.name, t2.pid, t2.code, t2.name as cname" +
-                     " from province t1, city t2 where t1.id = t2.pid";
+                     " from province t1, city t2 where t1.id = t2.pid order by t1.id";
 
         return jdbcTemplate.query(sql, result -> {
-            Map<Long, Province> map = new HashMap<>();
+            Map<Long, Province> map = new TreeMap<>();
             Province prov;
 
             while (result.next()) {
@@ -55,7 +55,7 @@ public class PlainProvDao implements ProvDao {
             }
 
             List<Province> provinces = new ArrayList<Province>(map.values());
-            Collections.sort(provinces, new MyIntComparator());
+            // Collections.sort(provinces, new MyIntComparator());
             return provinces;
         });
     }
