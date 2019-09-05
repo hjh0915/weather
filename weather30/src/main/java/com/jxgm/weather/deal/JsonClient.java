@@ -10,6 +10,9 @@ import okhttp3.Response;
 
 public class JsonClient {
     final String APIURL = "http://www.tianqiapi.com/api/?version=v1&cityid=";
+    final String appid = "68364224";
+    final String appsecret = "2BgyEsir";
+
     OkHttpClient client = new OkHttpClient();
 
     public String visit(String url) throws IOException {
@@ -23,6 +26,6 @@ public class JsonClient {
     }
 
     public String getUrl(String citycode) {
-        return APIURL+citycode;
+        return APIURL+citycode+"&appid="+appid+"&appsecret="+appsecret;
     }
 }
